@@ -1,0 +1,115 @@
+
+#sidebar-wrapper-icon{
+    z-index: 1;
+    position: absolute;
+    width:50px;
+    height: 200%;
+    overflow-y: hidden;
+    background: #2c3e50;
+    padding-left: 0px;
+}
+a{
+    text-decoration: none;
+}
+
+#sidebar-wrapper-icon .sidebar-nav li a i{
+    font-size: 1.5em;
+    padding: 0px;
+    text-align: center;
+    margin: 0px
+}
+#sidebar-wrapper-icon .sidebar-nav li{
+    padding-left: 0px;
+    margin-top: 10px;
+    text-align: left;
+    margin-left: -5px
+}
+
+#sidebar-wrapper{
+    z-index: 1;
+    position: absolute;
+    width:0px;
+    height: 200%;
+    overflow-y: hidden;
+    background: #2c3e50;
+}
+
+
+#sidebar-wrapper ul li{
+    background: #2c3e50;
+    border: none;
+}
+
+#tabBox{
+    margin: 0px;
+    padding: 0px;
+}
+
+#sidebar-menu-wrapper{
+    top:-10px;
+    height:200%;
+}
+
+#page-content-wrapper, #orderpage{
+    width:100%;
+    position: absolute;
+    margin: 10px;
+    padding-left: 50px;}
+
+#pageheader{
+    padding-left: 40px;
+}
+
+#wrapper.menuWrapper #sidebar-wrapper {
+    width: 220px;
+    height: 200%
+}
+
+
+#wrapper.addP #page-addproduct-wrapper{
+    display: block;
+}
+
+#wrapper.menuWrapper #sidebar-wrapper-icon {
+    display: none
+}
+
+#wrapper.menuWrapper #page-content-wrapper, #wrapper.menuWrapper #orderpage{
+    padding-left: 220px;
+    margin-top: 5px;
+}
+
+.sidebar-nav{
+    padding-left: 0px;
+    list-style: none;
+}
+
+.sidebar-nav li a span{
+    padding-right: 10px;
+}
+
+.sidebar-nav li{
+    line-height: 40px;
+    text-indent: 10px;
+    padding: 0px;
+}
+
+.sidebar-nav li a{
+    text-decoration: none;
+    display: block;
+    color: #ddd;
+}
+.sidebar-nav li a:hover{
+    background: #16A085;   
+    margin-top: 5px;
+}
+
+#wrapper.showOrder #dashboard{
+    display: none;
+}
+
+
+
+
+
+

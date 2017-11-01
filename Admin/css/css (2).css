@@ -1,0 +1,44 @@
+div div #jumbo{
+    padding: 1px;    
+}
+
+ article div #jumbo button{
+     margin-left:10px;
+     margin-bottom:5px
+}
+.clear{
+    clear: both;
+}
+
+div div #jumbo img{
+    margin-top: 15px;
+     margin-bottom:5px;
+    width:130%;
+    
+}
+
+div div #jumbo p{
+    font-size:1em;
+}
+
+div div #jumbo h4{
+    font-size:1.3em;
+}
+
+div div #jumbo strong{
+    color: hotpink;
+}
+
+ 
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 60%;
+      margin: auto;
+  }
+  
+
+
+
+
+
+

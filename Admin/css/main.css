@@ -1,0 +1,27 @@
+#generalform{
+	padding:20px;
+	background:#006699;
+	overflow:auto;
+	border-radius:7px;
+	-moz-border-radius:7px;
+	-webkit-border-radius:7px;
+	box-shadow:5px 5px 15px #A0A0A0;
+	-moz-box-shadow:5px 5px 15px #A0A0A0;
+	-webkit-box-shadow:5px 5px 15px #A0A0A0;
+}
+.field{
+	font-size:15px;
+	width:500px;
+	padding:5px;
+	border:1px solid #b9bdc1;
+	color:#505050
+}
+
+#sidebar-wrapper{
+    z-index: 1;
+    position: absolute;
+    width:0px;
+    height: 100%;
+    overflow-y: hidden;
+    background: #2c3e50;
+}
