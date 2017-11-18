@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
     $(".dropdown-toggle").dropdown();
+    
+   
 });
 
 
@@ -14,6 +16,8 @@ $('#toggle1').click(function(e) {
     e.preventDefault();
     $('#wrapper').toggleClass('menuWrapper');
 });
+
+
 
 
 

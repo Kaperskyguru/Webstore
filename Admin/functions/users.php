@@ -16,12 +16,12 @@ function getUserID($email) {
 }
 
 // get Username
-function getUsername($email) {
+function getUsername($id1) {
     global $con;
-    $email = sanitizer($email);
-    $query = "SELECT `l_name` FROM users WHERE `user_id` = '$email'";
+    $id = sanitizer($id1);
+    $query = "SELECT `f_name` FROM users WHERE `user_id` = '$id'";
     $num = mysqli_fetch_assoc(mysqli_query($con, $query));
-    return $num['l_name'];
+    return $num['f_name'];
 }
 
 // Is Username Exist?
@@ -102,8 +102,15 @@ function getOrder($id) {
 
 function getFeedback($col, $id) {
     global $con;
-    return(mysqli_fetch_assoc($con->query("SELECT $col"
-                            . " FROM `feedbacktable` RIGHT JOIN `users` ON `users`.`user_id` = `feedbacktable`.`User_ID` "
-                            . "RIGHT JOIN  `products` ON `products`.`prod_id`= `feedbacktable`.`feed_ID` "
-                            . "WHERE `feed_ID` = $id")));
+    $data = mysqli_fetch_assoc($con->query("SELECT * FROM feedbacktable"));
+    return $data[$col];
+}
+
+function getFeedDetails($col) {
+    global $con;
+    $query = "SELECT * FROM feedbacktable";
+    //  $data = ;
+    while ($da = mysqli_fetch_assoc(mysqli_result($con, $query))) {
+        return $da[$col];
+    }
 }
