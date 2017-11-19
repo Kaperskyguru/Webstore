@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ('./init.php');
 ?>
 
@@ -19,11 +19,7 @@ include ('./init.php');
                 <!--side-->
                 <?php include('./include/sidebar.php'); ?>
             </div>
-
-
-
-
-
+            
             <div id="page-content-wrapper" class="container">
                 <div class="row">
                     <div class="col-md-9 col-lg-9">
@@ -42,60 +38,80 @@ include ('./init.php');
                                 </div>
                             </div>
                         </div>
+                        <div class="panel panel-primary">
+                            <div class="panel panel-heading">
+                                <table class="table table-hover table-striped">
+                                    <thead class="">
+                                        <tr>
+                                            <td>Product ID</td>
+                                            <td>Product Name</td>
+                                            <td>Reviewed</td>
+                                            <td>Reviewed By</td>
+                                            <td>Date Reviewed</td>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <table class="table table-hover table-striped">
+                            <?php
+                            $data = array();
+                            $data = getDBRows('feedbacktable', 'Prod_ID');
+                            while ($query_run = mysqli_fetch_assoc($data)) {
+                                echo '
+                                                <tr>
+                                                    <td>
+                                            ';
+                                ?>
 
-                        <?php
-                        for ($i = 1; $i < 6; $i++) {
-                            echo '
-                                    
-                                    <div class="panel panel-primary">
-                                        <div class = "panel-heading">
-                                            <div class = "row">
-                                                <div class="col-lg-3 col-md-3 col-xs-12">
-                                                    <h5>Product</h5>
-                                                </div>
-                                                <div class="col-lg-5 col-md-5 col-xs-12">
-                                                    <h5 class = "text-center">Reviewed</h5>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    <h5>Reviewed by</h5>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-xs-12">
-                                                    <h5>Date Reviewed</h5>
-                                                </div>
-                                            </div>
-                                           
-                                                       
-                                        </div>
-                                        
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-lg-3 col-md-3 ">
-                                                    <p>'
-                            ?> <?php echo getFeedback('products.prod_title', $i); ?><?php
-                            echo '</p>
-                                                </div>
-                                                <div class="col-lg-5 col-md-5">
-                                                    <p class = "text-capitalize text-center"> '
-                            ?> <?php echo getFeedback('feedbacktable.feed_Desc', $i); ?><?php
-                            echo '</p>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2">
-                                                    <p>'
-                            ?> <?php echo getFeedback('users.f_name', $i); ?><?php
-                            echo '</p>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2">
-                                                    <p>'
-                            ?> <?php echo getFeedback('feedbacktable.DateCreated', $i); ?><?php
-                            echo '</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-                            ';
-                        }
-                        ?>
+                                <?php
+                                $Prod_ID = $query_run['Prod_ID'];
+                                echo getProduct('prod_id', $Prod_ID);
+                                ?>
+
+                                <?php echo '
+                                        </td>
+                                            <td>';
+                                ?>
+
+                                <?php
+                                $Prod_ID = $query_run['Prod_ID'];
+                                echo getProduct('prod_title', $Prod_ID)
+                                ?>
+                                <?php echo '
+                                                        </td>
+
+
+                                                        <td>';
+                                ?>
+                                <?php echo $query_run['feed_Desc']; ?>
+                                <?php echo '
+                                                        </td>
+
+
+                                                         <td>';
+                                ?>
+                                <?php
+                                $id = $query_run['User_ID'];
+                                echo getUsername($id);
+                                ?>
+                                <?php echo '
+                                                        </td>
+
+                                                         <td>';
+                                ?>
+
+                                <?php echo $query_run['DateCreated']; ?>
+                                <?php
+                                echo '
+                                                        </td>
+                                                    </tr>
+                                                 ';
+                            }
+                            ?>  
+
+                            </tbody>
+                        </table>
 
                         <div class="panel panel-primary">
                             <div class = "panel-heading">
@@ -117,30 +133,26 @@ include ('./init.php');
 
                         <?php include('./include/notification.php'); ?>
                     </div>
-                </div>
-
             </div>
 
-        </div>
+
+            <script>
+
+                $(document).ready(function () {
+                    $(".dropdown-toggle").dropdown();
+                });
 
 
-        <script>
+                $('#toggle').click(function (e) {
+                    e.preventDefault();
+                    $('#wrapper').toggleClass('menuWrapper');
+                });
 
-            $(document).ready(function() {
-                $(".dropdown-toggle").dropdown();
-            });
+                $('#toggle1').click(function (e) {
+                    e.preventDefault();
+                    $('#wrapper').toggleClass('menuWrapper');
+                });
 
-
-            $('#toggle').click(function(e) {
-                e.preventDefault();
-                $('#wrapper').toggleClass('menuWrapper');
-            });
-
-            $('#toggle1').click(function(e) {
-                e.preventDefault();
-                $('#wrapper').toggleClass('menuWrapper');
-            });
-
-        </script>
+            </script>
     </body>
 </html>
