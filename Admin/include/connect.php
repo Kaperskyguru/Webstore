@@ -1,17 +1,15 @@
 <?php
 
 $error = array();
-$conn = new mysqli('us-cdbr-iron-east-05.cleardb.net', 'be808db55dbefa', 'c3116baf', 'heroku_76835da5755eded') or die(mysql_error());
+$conn = new mysqli('us-cdbr-iron-east-05.cleardb.net', 'b2d235f05856c6', 'e80bf300', 'heroku_15d2db19e8c47a8') or die(mysql_error());
 $con = $conn;
 
-//mysql://be808db55dbefa:c3116baf@us-cdbr-iron-east-05.cleardb.net/heroku_76835da5755eded?reconnect=true
+//mysql://b2d235f05856c6:e80bf300@us-cdbr-iron-east-05.cleardb.net/heroku_15d2db19e8c47a8?reconnect=true
 
-
-
-if (mysqli_select_db($con,'sparepartsDB')) {
+if (mysqli_select_db($con,'heroku_15d2db19e8c47a8')) {
     createTables();
 } else {
-    if (mysqli_create_db($con, 'sparepartsDB')) {
+    if (mysqli_create_db($con, 'heroku_15d2db19e8c47a8')) {
         createTables($con);
     } else {
         echo 'cannot create DB';
