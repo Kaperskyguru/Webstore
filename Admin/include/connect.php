@@ -1,8 +1,13 @@
 <?php
 
 $error = array();
-$conn = new mysqli('localhost', 'root', '', 'sparepartsdb') or die(mysql_error());
+$conn = new mysqli('us-cdbr-iron-east-05.cleardb.net', 'be808db55dbefa', 'c3116baf', 'heroku_76835da5755eded') or die(mysql_error());
 $con = $conn;
+
+//mysql://be808db55dbefa:c3116baf@us-cdbr-iron-east-05.cleardb.net/heroku_76835da5755eded?reconnect=true
+
+
+
 /*if (mysqli_select_db($con,'sparepartsDB')) {
     createTables();
 } else {
