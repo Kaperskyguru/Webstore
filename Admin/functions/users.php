@@ -16,19 +16,19 @@ function getUserID($email) {
 }
 
 // get Username
-function getUsername($email) {
+function getUsername($id) {
     global $con;
-    $email = sanitizer($email);
-    $query = "SELECT `l_name` FROM users WHERE `user_id` = '$email'";
+    $email = sanitizer($id);
+    $query = "SELECT `f_name` FROM users WHERE `user_id` = '$id'";
     $num = mysqli_fetch_assoc(mysqli_query($con, $query));
-    return $num['l_name'];
+    return $num['f_name'];
 }
 
 // Is Username Exist?
 function isUsername_exist($username) {
     global $con;
     $username = sanitizer($username);
-    $query = "SELECT COUNT(`l_name`) FROM users WHERE `l_name` = '$username'";
+    $query = "SELECT COUNT(`f_name`) FROM users WHERE `f_name` = '$username'";
     return mysqli_num_rows(mysqli_query($con, $query)) == 1 ? true : false;
 }
 
@@ -96,6 +96,13 @@ function getProduct($col, $id) {
 function getOrder($id) {
     global $con;
     $query = "SELECT * FROM `ordertable` WHERE `Sta_ID` = $id";
+    $result = mysqli_query($con, $query);
+    return $result;
+}
+
+function getAllFeedback() {
+    global $con;
+    $query = "SELECT * FROM `feedbacktable`";
     $result = mysqli_query($con, $query);
     return $result;
 }

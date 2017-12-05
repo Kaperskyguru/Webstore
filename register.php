@@ -14,6 +14,7 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email'])
 
     $email = clean($_POST['email']);
 
+    $phone = clean($_POST['phone']);
 
     $password = clean($_POST['password']);
 
@@ -23,8 +24,8 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email'])
     //	if(User_exist($email) === false){
 
     global $conn;
-    $query = "INSERT INTO users (f_name,username,user_password,user_email,user_address1,user_role) VALUES ('$name','$username','$password','$email','$address', '0')";
-    if (mysqli_query($conn, $query) == true) {
+    $query = "INSERT INTO users (f_name,username,user_password,user_email,user_address1,phone_number,user_role) VALUES ('$name','$username','$password','$email','$address', '$phone', '0')";
+    if (mysqli_query($conn, $query)) {
         echo 'true';
     } else {
         $error = 'Registration Failed';
@@ -37,7 +38,7 @@ if (isset($_POST['name']) && isset($_POST['password']) && isset($_POST['email'])
 
 function insertData($name, $username, $pass, $email, $address) {
     global $conn;
-    $query = "INSERT INTO users (f_name,username,user_password,user_email,user_address1,user_role) VALUES ('$name','$username','$pass','$email','$address', '0')";
+    $query = "INSERT INTO users (f_name,username,user_password,user_email,user_address1,phone_number,user_role) VALUES ('$name','$username','$password','$email','$address', '$phone', '0')";
     return (mysqli_query($conn, $query) or die(mysqli_errorr() ? true : false));
 }
 

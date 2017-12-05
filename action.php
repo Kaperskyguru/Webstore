@@ -1,9 +1,11 @@
 <?php
 
 session_start();
-require('include/sanitizer.php');
-require_once('include/connect.inc.php');
+require('functions.php');
 global $conn;
+
+
+
 if (isset($_POST["category"])) {
     $category_query = "SELECT * FROM categories";
     $run_query = mysqli_query($conn, $category_query);
@@ -151,9 +153,9 @@ if (isset($_POST["product"])) {
                                     <button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
                                 </div>
                                 <div class='ratings'>
-                                    <p class='pull-right'>15 reviews</p>
+                                    <p class='pull-right'>"?> <?php echo getRowNums("feedbacktable", "Prod_ID", $product_id); echo " reviews</p>
                                     <p>
-                                        <span class='glyphicon glyphicon-star'></span>
+                                      <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
@@ -204,7 +206,7 @@ if (isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"]
                                     <button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
                                 </div>
                                 <div class='ratings'>
-                                    <p class='pull-right'>15 reviews</p>
+                                    <p class='pull-right'>"?> <?php echo getRowNums("feedbacktable", "Prod_ID", $product_id); echo " reviews</p>
                                     <p>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
@@ -332,6 +334,10 @@ if (isset($_POST["removeFromCart"])) {
     }
 }
 
+if (isset($_POST["commentPost"])) {
+    
+}
+
 if (isset($_POST["updateProduct"])) {
     $uid = $_SESSION["uid"];
     $pid = $_POST["pid"];
@@ -354,11 +360,22 @@ if (isset($_POST["total_amt"])) {
     checkOut($total_amt);
 }
 
-if(isset($_POST['comment'])){
+if (isset($_POST['comment'])) {
     $comment = $_POST['comment'];
+    $pidd = $_POST["pidd"];
     $id = $_SESSION['uid'];
     echo $comment;
-    storeReview();
+    storeReview($comment, $pidd);
+}
+
+function storeReview($comment, $pidd) {
+    global $conn;
+    $sql = "INSERT INTO feedbacktable(feed_Desc,User_ID, Prod_ID)VALUES('$comment',2,'$pidd')";
+    if (mysqli_query($conn, $sql)) {
+        echo "true";
+    } else {
+        echo "false";
+    }
 }
 
 function getLimit($limit) {
@@ -393,7 +410,6 @@ function moveToOrderTable($ID) {
         $user_ID = $row["user_id"];
         $total_price = $row["total_amount"];
         $qty = $row["qty"];
-        
     }
     addToOrderTable($prod_ID, $user_ID, $total_price, $qty);
 }
@@ -409,6 +425,4 @@ function addToOrderTable($prod_ID, $user_ID, $total_price, $qty) {
         echo "Failed";
         mysqli_rollback($conn);
     }
-    
-    
 }

@@ -52,67 +52,78 @@ include ('./init.php');
                             </div>
                         </div>
 
-                        <table class="table table-hover table-striped">
-                            <thead class="">
-                                <tr>
-                                    <td>S/N </td>
-                                    <td>Product Name</td>
-                                    <td>Quantity</td>
-                                    <td>Ordered By</td>
-                                    <td>Date Ordered</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $count = 1;
-                                $id = getStatusID(getStatus());
-                                $data1 = getOrder($id);
-                                while ($data = mysqli_fetch_assoc($data1)) {
-                                    $count + 2;
-                                    echo '  
-                                                        
-                                                    <tr>
-                                                        <td>'
-                                    ?><?php
-                                    echo $count++;
-                                    echo '</td>
-                                                    
-                                                    
-                                                    <td>'
-                                    ?><?php
-                                    $i = $data["Prod_ID"];
-                                    echo getProduct("prod_title", $i);
-                                    echo '</td>
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <p> Products </p>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-responsive table-hover table-striped">
+                                    <thead class="">
+                                        <tr>
+                                            <td>S/N</td>
+                                            <td>Product Name</td>
+                                            <td>Category</td>
+                                            <td>Quantity</td>
+                                            <td>Price</td>
+                                            <td>Date Created</td>
+                                        </tr>
+                                    </thead>
 
-                                                     <td>'
-                                    ?><?php
-                                    echo $data["Ord_Qty"];
-                                    echo '</td>
-                                                          
-                                                     <td>'
-                                    ?><?php
-                                    $userid = $data["User_ID"];
-                                    echo getUsername($userid);
-                                    echo '</td>
-                                                        
-                                                         <td>'
-                                    ?><?php
-                                    echo $data["DateCreated"];
-                                    echo '</td>
-                                                         
-                                                        <td>
-                                                        <button type = "button" name = '
-                                    ?><?php
-                                    echo $data["Ord_ID"];
-                                    echo ' class = "btn btn-danger" id = "view">View</button>
+                                    <tbody>
+
+                                        <?php
+                                        $data = array();
+                                        $data = getDBRows('products', 'prod_id');
+                                        $count = 1;
+                                        while ($query_run = mysqli_fetch_assoc($data)) {
+                                            $count + 2;
+                                            echo '<tr>
+                                                        <td>';
+                                            ?>
+                                            <?php echo $count++; ?>
+                                            <?php echo '
                                                         </td>
-                                                    ';
-                                }
-                                ?>  
-                                </tr>        
-                            </tbody>
-                        </table>
+
+                                                        <td>';
+                                            ?>
+                                            <?php echo $query_run['prod_title']; ?>
+                                            <?php echo '
+                                                        </td>
+
+
+                                                        <td>';
+                                            ?>
+                                            <?php echo getCatName($query_run['prod_cat']); ?>
+                                            <?php echo '
+                                                        </td>
+
+
+                                                         <td>';
+                                            ?>
+                                            <?php echo $query_run['prod_qty']; ?>
+                                            <?php echo '
+                                                        </td>
+
+                                                         <td>';
+                                            ?>
+                                            <?php echo 'N ' . $query_run['prod_price']; ?>
+                                            <?php echo '
+                                                        </td>
+
+                                                         <td>';
+                                            ?>
+                                            <?php echo $query_run['dateCreated']; ?>
+                                            <?php
+                                            echo '
+                                                        </td>
+                                                    </tr>
+                                                 ';
+                                        }
+                                        ?> 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
                         <div class="panel panel-primary">
                             <div class = "panel-heading">
@@ -131,8 +142,7 @@ include ('./init.php');
                         </div>
                     </div>
                     <div class="col-md-3">
-
-<?php include('./include/notification.php'); ?>
+                        <?php include('./include/notification.php'); ?>
                     </div>
                 </div>
 

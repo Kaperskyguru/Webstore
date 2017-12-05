@@ -4,7 +4,7 @@ session_start();
 if (!isset($_SESSION['uid'])) {
     header("location: index.php");
 }
-include('include/connect.inc.php');
+include('functions.php');
 include('include/head.php');
 ?>
 <div class="col-sm-9" style="">
@@ -49,23 +49,23 @@ include('include/head.php');
                 <div class="panel-body" style="height: 200px;">
                     <p><span class="glyphicon glyphicon-envelope"></span> <?php echo getDeliveryAddress($_SESSION['uid']); ?>
                     </p>
-                    <p><span class="glyphicon glyphicon-phone"> 08122394432</span></p>
+                    <p><span class="glyphicon glyphicon-phone"> <?php echo getPhoneNumber($_SESSION['uid']); ?></span></p>
                 </div>
                 <div class="panel-footer">
                     <li style="list-style: none; text-align: right; "><a href="addressedit.php" style=""><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6" style="">
+        <div class="col-sm-6" style="">+
             <div class="panel panel-primary">
                 <div class="panel-heading">Default Billing Address</div>
                 <div class="panel-body" style="height: 200px;">
-                    <p><span class="glyphicon glyphicon-envelope"></span> No 2 Pinnacle close off Refinery road, beside Casa De Pedro Annex Effurun, Delta state Casa De Pedro annex, Refinery road WARRI-REFINERY ROAD Delta
+                    <p><span class="glyphicon glyphicon-envelope"></span> <?php echo getHomeAddress($_SESSION['uid']); ?>
                     </p>
-                    <p><span class="glyphicon glyphicon-phone"> 08122394432</span></p>
+                    <p><span class="glyphicon glyphicon-phone"> <?php echo getPhoneNumber($_SESSION['uid']); ?></span></p>
                 </div>
                 <div class="panel-footer">
-                    <li style="list-style: none; text-align: right; "><a href="addressedit.php" style=""><span class="glyphicon glyphicon-edit"></span> Edit</a></li>
+                    <li style="list-style: none; text-align: right; "><a href="addAddress.php" style=""><span class="glyphicon glyphicon-edit"></span> Add</a></li>
                 </div>
             </div>
         </div>
@@ -77,38 +77,3 @@ include('include/head.php');
 <?php include('include/footer.php') ?>
 </body>
 </html>
-
-<?php
-
-function getEmail($id) {
-    global $con;
-    //$email = sanitizer($email);
-    $query = "SELECT `user_email` FROM users WHERE `user_id` = '$id'";
-    $num = mysqli_fetch_array(mysqli_query($con, $query));
-    return $num['user_email'];
-}
-
-function getName($id) {
-    global $con;
-    //$email = sanitizer($email);
-    $query = "SELECT `f_name` FROM users WHERE `user_id` = '$id'";
-    $num = mysqli_fetch_array(mysqli_query($con, $query));
-    return $num['f_name'];
-}
-
-function getDeliveryAddress($id) {
-    global $con;
-    //$email = sanitizer($email);
-    $query = "SELECT `user_address1` FROM users WHERE `user_id` = '$id'";
-    $num = mysqli_fetch_array(mysqli_query($con, $query));
-    return $num['user_address1'];
-}
-
-function getPhoneNumber($id) {
-    global $con;
-    //$email = sanitizer($email);
-    $query = "SELECT `user_address1` FROM users WHERE `user_id` = '$id'";
-    $num = mysqli_fetch_array(mysqli_query($con, $query));
-    return $num['user_address1'];
-}
-?>

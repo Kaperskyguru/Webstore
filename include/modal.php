@@ -65,8 +65,12 @@
                             <input class="form-control" type="email" id="email" />
                         </div>	
                         <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input class="form-control" type="text" id="phone" />
+                        </div>	
+                        <div class="form-group">
                             <label for="address">Address:</label>
-                            <textarea class="form-control" rows="5" id="address"></textarea>
+                            <textarea class="form-control" rows="3" id="address"></textarea>
                         </div>
                     </form>
                 </div>

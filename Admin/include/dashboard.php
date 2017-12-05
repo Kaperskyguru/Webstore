@@ -1,14 +1,6 @@
 
 <?php
-
 include('./init.php');
-
-
-//getAnyData("producttable", "Prod_ID", "", "Prod_ID","Prod_Name","Cat_ID", "Prod_Qty", "Prod_Price", "DateCreated");
-//echo getDBRows("producttable");
-
-
-
 
 
 echo '

@@ -23,15 +23,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>                        
                     </button>
-                    <a class="navbar-brand" href="#">Logo</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-modal-window"><span> Products</span></a></li>
-                        <li><a href="#"><span> Deals</span></a></li>
-                        <li><a href="#"><span> Stores</span></a></li>
-                        <li><a href="#"><span> Contact</span></a></li>
+                        <li class="active"><a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#" onclick="document.getElementById('id01').style.display = 'block'"><span class="glyphicon glyphicon-user"></span> <?php echo "Hi, " . $_SESSION['name']; ?></a></li>

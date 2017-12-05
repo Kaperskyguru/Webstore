@@ -32,19 +32,20 @@ if (isset($_SESSION["uid"])) {
             <div class="row">
                 <?php require ('include/sidebar.php'); ?>
 
-                <div class="col-md-9">
+                
+                    <div class="col-md-9">
 
-                    <?php
-                    $id = $_GET["id"];
-                    $result = getProductDetails($id);
-                    while ($data = mysqli_fetch_assoc($result)) {
-                        $productName = $data["prod_title"];
-                        $productPrice = $data["prod_price"];
-                        $productDesc = $data["prod_desc"];
-                        $product_image = $data['prod_image'];
+                        <?php
+                        $id = $_GET["id"];
+                        $result = getProductDetails($id);
+                        while ($data = mysqli_fetch_assoc($result)) {
+                            $productName = $data["prod_title"];
+                            $productPrice = $data["prod_price"];
+                            $productDesc = $data["prod_desc"];
+                            $product_image = $data['prod_image'];
 
 //Search for how to resize Image in PHP
-                        echo "
+                            echo "
 
 
                     <div class='thumbnail'>
@@ -56,111 +57,110 @@ if (isset($_SESSION["uid"])) {
                                 
                         </div>
                              ";
-                    }
-                    ?>
-                    <div class="ratings">
-                        <p class="pull-right">3 reviews</p>
-                        <p>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            4.0 stars
-                        </p>
-                    </div>
-                </div>
-
-                <div class="well">
-                    <div class="text-right">
-                        <a class="btn btn-success" data-toggle = "modal" data-target = "#reviewModal">Leave a Review</a>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">10 days ago</span>
-                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        }
+                        ?>
+                        <div class="ratings">
+                            <p class="pull-right"><?php 
+                            $id = $_GET["id"];
+                            echo getRowNums("feedbacktable", "Prod_ID", $id);?> 
+                            reviews</p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                                4.0 stars
+                            </p>
                         </div>
                     </div>
 
-                    <hr>
+                    <div class="well">
+                        <div class="text-right">
+                            <a class="btn btn-success" data-toggle = "modal" data-target = "#reviewModal">Leave a Review</a>
+                        </div>
 
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">12 days ago</span>
-                            <p>I've alredy ordered another one!</p>
+                        <hr>
+
+                        <div>
+                            <?php
+                            $id = $_GET['id'];
+                            $data1 = getAllFeedback($id);
+                            while ($data = mysqli_fetch_assoc($data1)) {
+                                echo '
+                            <div class = "row">
+                            <div class = "col-md-12">
+                            <span class = "glyphicon glyphicon-star"></span>
+                            <span class = "glyphicon glyphicon-star"></span>
+                            <span class = "glyphicon glyphicon-star"></span>
+                            <span class = "glyphicon glyphicon-star"></span>
+                            <span class = "glyphicon glyphicon-star-empty"></span>
+                            '
+                                ?>
+                                <?php
+                                $id = $data["User_ID"];
+                                echo getUsername($id);
+                                echo '
+                            <span class = "pull-right">10 days ago</span>
+                            <p>'
+                                ?><?php
+                                echo $data["feed_Desc"];
+                                echo '</p>
+                            </div>
+                            </div>
+
+                            <hr>
+';
+                            }
+                            ?>
                         </div>
                     </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star"></span>
-                            <span class="glyphicon glyphicon-star-empty"></span>
-                            Anonymous
-                            <span class="pull-right">15 days ago</span>
-                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="container">
-        <hr>
-        <?php include('include/footer.php'); ?>
-    </div>
-
-    <div id = "reviewModal" class = "modal fade" role = "dialog">
-        <div class = "modal-dialog">
-            <div class = "modal-content">
-                <div class = "modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h2>Write a review</h2>
-                </div>
-                <div class = "modal-body">
-                    <form class = "form">
-                        <div class="form-group">
-                            <label for="comment">Comment:</label>
-                            <textarea class="form-control" pid = "<?php echo $_GET['id']?>" rows="5" id="comment" name="comment"></textarea>
-                        </div>
-                    </form>
-                </div>
-
-                <div class = "modal-footer">
-                    <button type="button" class="btn btn-primary" id="submitReview" name="submitReview">Submit</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-    </div>
-    <script type="text/javascript" src="jquery/1.12.0/jquery2.js"></script>
-    <script type="text/javascript" src="jquery/1.12.0/bootstrap.min.js"></script>
-    <script type="text/javascript" src="jquery/1.12.0/main.js"></script>
 
-    <?php include('include/modal.php'); ?>
-</body>
+
+
+        <div class="container">
+            <hr>
+            <?php include('include/footer.php'); ?>
+        </div>
+
+        
+        
+        
+        
+        
+       <!-- // Modal starts here-->
+       
+        <div id = "reviewModal" class = "modal fade" role = "dialog">
+            <div class = "modal-dialog">
+                <div class = "modal-content">
+                    <div class = "modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2>Write a review</h2>
+                    </div>
+                    <div class = "modal-body">
+                        <form class = "form">
+                            <div class="form-group">
+                                <label for="comment">Comment:</label>
+                                <textarea class="form-control" pid = "<?php echo $_GET['id'] ?>" rows="5" id="comment" name="comment"></textarea>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class = "modal-footer">
+                        <button type="button" class="btn btn-primary" id="submitReview" name="submitReview">Submit</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="jquery/1.12.0/jquery2.js"></script>
+        <script type="text/javascript" src="jquery/1.12.0/bootstrap.min.js"></script>
+        <script type="text/javascript" src="jquery/1.12.0/main.js"></script>
+
+        <?php include('include/modal.php'); ?>
+
+    </body>
 </html>
