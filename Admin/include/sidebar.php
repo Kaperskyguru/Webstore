@@ -6,7 +6,7 @@ echo '
 
         <ul class="sidebar-nav">
             <li>
-                <a href="dashboard.php">
+                <a href="index.php">
                     <span class = "glyphicon glyphicon-dashboard"></span>
                     Dashboard <a class = "close pull-right" id = "toggle1" href = "#" style = "padding:2px 10px; padding-top: -10px; color: #FFF"> &times;
                     </a>
@@ -45,9 +45,9 @@ echo '
 
                 <div class = "collapse" id = "order">
                     <ul class = "list-group ">
-                        <li class = "list-group-item"><a href = "order.php?t=Active"><span class = "glyphicon glyphicon-plus"> </span> Active <span class="badge">'?><?php echo getRowNums('ordertable', 'Sta_ID', 1); echo ' </span></a></li>
-                        <li class = "list-group-item"><a href = "order.php?t=Pending"><span class = "glyphicon glyphicon-list"></span> Pending <span class="badge">'?><?php echo getRowNums('ordertable', 'Sta_ID', 2); echo '</span></a></li>
-                        <li class = "list-group-item"><a href = "order.php?t=onship"><span class = "glyphicon glyphicon-remove-sign"> </span> On Ship <span class="badge">'?><?php echo getRowNums('ordertable', 'Sta_ID', 3); echo '</span></a></li>
+                        <li class = "list-group-item"><a href = "order.php?t=Active"><span class = "glyphicon glyphicon-plus"> </span> Active <span class="badge">5</span></a></li>
+                        <li class = "list-group-item"><a href = "order.php?t=Pending"><span class = "glyphicon glyphicon-list"></span> Pending <span class="badge">5</span></a></li>
+                        <li class = "list-group-item"><a href = "order.php?t=onship"><span class = "glyphicon glyphicon-remove-sign"> </span> On Ship <span class="badge">5</span></a></li>
                     </ul>
                 </div>
             </li>
@@ -60,10 +60,10 @@ echo '
     <div id = "sidebar-wrapper-icon">
         <ul class = "sidebar-nav">
             <li><a href = "#" id = "toggle" data-toggle = "tooltip" title = "Menu"><i class = "glyphicon glyphicon-tasks"></i></a></li>
-            <li><a href = "dashboard.php" data-toggle = "tooltip" title = "Dashboard"><i class = "glyphicon glyphicon-dashboard"></i></a></li>
+            <li><a href = "index.php" data-toggle = "tooltip" title = "Dashboard"><i class = "glyphicon glyphicon-dashboard"></i></a></li>
             <li><a href = "account.php" data-toggle = "tooltip" title = "Account"><i class = "glyphicon glyphicon-user"></i></a></li>
             <li><a href = "addProduct.php" data-toggle = "tooltip" title = "Products"><i class = "glyphicon glyphicon-plus"></i></a></li>
-            <li><a href = "order.php?t=Pending" data-toggle = "tooltip" title = "Orders"><i class = "glyphicon glyphicon-shopping-cart"></i></a></li>
+            <li><a href = "order.php" data-toggle = "tooltip" title = "Orders"><i class = "glyphicon glyphicon-shopping-cart"></i></a></li>
             <li><a href = "feedback.php" data-toggle = "tooltip" title = "Feedbacks"><i class = "glyphicon glyphicon-comment"></i></a></li>
             <li><a href = "logout.php" data-toggle = "tooltip" title = "log out"><i class = "glyphicon glyphicon-log-out"></i></a></li>
         </ul>

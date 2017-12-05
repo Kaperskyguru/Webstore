@@ -53,7 +53,7 @@ function getStatus() {
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <h2><?php echo getStatus() . ' Orders'; ?></h2>
+                                        <h2>Latest Orders</h2>
                                     </div>
                                     <div class="panel-body">
                                         <div class = "table-responsive">
@@ -107,15 +107,7 @@ function getStatus() {
                                                         echo '</td>
                                                          
                                                         <td>
-                                                        <button type = "button" name = '
-                                                        ?><?php
-                                                        echo $data["Ord_ID"];
-                                                        echo ' class = "btn btn-danger" id = "view">View</button>
-                                                            
-                                                        <button type = "button" name = '
-                                                        ?><?php
-                                                        echo $data["Ord_ID"];
-                                                        echo ' class = "btn btn-primary" id = "paid">Paid</button>
+                                                        <button type = "button" name = '?><?php echo $data["Ord_ID"]; echo ' class = "btn btn-danger" id = "view">View</button>
                                                         </td>
                                                     ';
                                                     }
@@ -131,7 +123,15 @@ function getStatus() {
                         <div class="panel panel-primary">
                             <div class = "panel-heading">
                                 <div class = "row">
-
+                                    <!--                                    <div class="col-lg-4 col-md-4 col-xs-4">
+                                                                            <button type="button" class="btn btn-primary btn-block">Previous</button>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-xs-4">
+                                                                            <h5 class="text-center">Page 1 of 12 </h5>
+                                                                        </div>
+                                                                        <div class="col-lg-4 col-md-4 col-xs-4">
+                                                                            <button type="button" class="btn btn-primary btn-block">Next</button>
+                                                                        </div>-->
                                 </div>
                             </div>
                         </div>
@@ -151,8 +151,6 @@ function getStatus() {
 
             $(document).ready(function () {
                 $(".dropdown-toggle").dropdown();
-
-               
             });
 
 
