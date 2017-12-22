@@ -2,9 +2,6 @@
 
 session_start();
 require('functions.php');
-global $conn;
-
-
 
 if (isset($_POST["category"])) {
     $category_query = "SELECT * FROM categories";
@@ -139,23 +136,25 @@ if (isset($_POST["product"])) {
             $product_price = $row['prod_price'];
             $product_desc = $row['prod_desc'];
             $product_image = $row['prod_image'];
-
-
             echo "
                 <div class='col-sm-4 col-lg-4 col-md-4'>
                             <div class='thumbnail'>
-                                <img src='Admin/images/$product_image' alt=''>
+                                <img src='images/$product_image' alt=''>
                                 <div class='caption'>
                                     <h4 class='pull-right'>N$product_price.00</h4>
                                     <h4><a href='ProductPage.php?id=$product_id'>$product_title</a>
                                     </h4>
                                     <p>$product_desc</p>
-                                    <button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
+									<button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
                                 </div>
                                 <div class='ratings'>
-                                    <p class='pull-right'>"?> <?php echo getRowNums("feedbacktable", "Prod_ID", $product_id); echo " reviews</p>
+                                    <p class='pull-right'>"
+?> <?php
+
+            echo getRowNums("feedbacktable", "Prod_ID", $product_id);
+            echo " reviews</p>
                                     <p>
-                                      <span class='glyphicon glyphicon-star'></span>
+                                        <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
@@ -197,16 +196,16 @@ if (isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"]
         echo "
                 <div class='col-sm-4 col-lg-4 col-md-4'>
                             <div class='thumbnail'>
-                                <img src='Admin/images/$product_image' alt=''>
+                                <img src='images/$product_image' alt=''>
                                 <div class='caption'>
                                     <h4 class='pull-right'>N$product_price.00</h4>
-                                    <h4><a href='ProductPage.php?id=$product_id'>$product_title</a>
+                                    <h4><a href='ProductPage.php'>$product_title</a>
                                     </h4>
                                     <p>$product_desc</p>
-                                    <button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
+									<button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
                                 </div>
                                 <div class='ratings'>
-                                    <p class='pull-right'>"?> <?php echo getRowNums("feedbacktable", "Prod_ID", $product_id); echo " reviews</p>
+                                    <p class='pull-right'>15 reviews</p>
                                     <p>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>
@@ -229,7 +228,7 @@ if (isset($_POST["addProduct"])) {
     if (mysqli_num_rows($run_query) > 0) {
         echo "
 								<div class='alert alert-warning'>
-												<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Product already added to Cart, continue shopping!...</b>
+												<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Product already added to Cart, You can edit quantity from your shopping cart. Thanks!...</b>
 										 </div>
 						";
     } else {
@@ -272,13 +271,14 @@ if (isset($_POST["get_cart_product"]) || isset($_POST["cart_checkout"])) {
             $total_amt = $total_amt + $total_sum;
             if (isset($_POST["get_cart_product"])) {
                 echo "
-                    <div class='row'>
-                                    <div class='col-md-3'>$no</div>
-                                    <div class='col-md-3'><img src='images/$pro_image' alt='' width='60px' height='50px'></div>
-                                    <div class='col-md-3'>$pro_name</div>
-                                    <div class='col-md-3'>N$pro_price.00</div>
-                            </div>
-                    ";
+								<div class='row'>
+										<div class='col-md-3'>$no</div>
+										<div class='col-md-3'><img src='images/$pro_image' alt='' width='60px' height='50px'></div>
+										<div class='col-md-3'>$pro_name</div>
+										<div class='col-md-3'>N$pro_price.00</div>
+									</div>
+						
+						";
                 $no = $no + 1;
             } else {
                 echo "	
@@ -289,7 +289,7 @@ if (isset($_POST["get_cart_product"]) || isset($_POST["cart_checkout"])) {
                                                 <a href='#' update_id='$pro_id' class='btn btn-primary update'><span class='glyphicon glyphicon-ok-sign'></span></a>
                                             </div>
                                         </div>
-                                        <div class='col-md-2'><img src='./Admin/images/$pro_image' width='60px' height='50px'/></div>
+                                        <div class='col-md-2'><img src='images/$pro_image' width='60px' height='50px'/></div>
                                         <div class='col-md-2'>$pro_name</div>
                                         <div class='col-md-2'><input type='text' class='form-control price' pid='$pro_id' id='price-$pro_id' value='$pro_price' disabled></div>
                                         <div class='col-md-2'><input type='text' class='form-control qty' pid='$pro_id' id='qty-$pro_id' value='$qty' ></div>
@@ -304,13 +304,19 @@ if (isset($_POST["get_cart_product"]) || isset($_POST["cart_checkout"])) {
                     <div class='row'>
                                     <div class='col-md-8'></div>
                                     <div class='col-md-4'>
-                                                    <label id = 'total_amt'>Total: N$total_amt</label>
-                                                        <button class = 'button-primary' onclick = 'clic()' tid = '$total_amt' id = 'checkout'> Checkout </button>
+                                                    <h1>Total: N$total_amt</h1>
                                     </div>
                     </div>
+					<a href='customerOrder.php' style='float:right; margin-right:50px;' class='btn btn-warning btn-lg'>Checkout</a>
                 ";
         }
     }
+}
+
+if (isset($_POST["trackingID"])) {
+    $pid = $_POST["trackID"];
+    echo $pid;
+    changeStatus(3, $pid);
 }
 
 if (isset($_POST["cart_count"])) {
@@ -334,10 +340,6 @@ if (isset($_POST["removeFromCart"])) {
     }
 }
 
-if (isset($_POST["commentPost"])) {
-    
-}
-
 if (isset($_POST["updateProduct"])) {
     $uid = $_SESSION["uid"];
     $pid = $_POST["pid"];
@@ -355,28 +357,6 @@ if (isset($_POST["updateProduct"])) {
 				";
     }
 }
-if (isset($_POST["total_amt"])) {
-    $total_amt = $_POST["total_amt"];
-    checkOut($total_amt);
-}
-
-if (isset($_POST['comment'])) {
-    $comment = $_POST['comment'];
-    $pidd = $_POST["pidd"];
-    $id = $_SESSION['uid'];
-    echo $comment;
-    storeReview($comment, $pidd);
-}
-
-function storeReview($comment, $pidd) {
-    global $conn;
-    $sql = "INSERT INTO feedbacktable(feed_Desc,User_ID, Prod_ID)VALUES('$comment',2,'$pidd')";
-    if (mysqli_query($conn, $sql)) {
-        echo "true";
-    } else {
-        echo "false";
-    }
-}
 
 function getLimit($limit) {
     if (isset($_POST["setPage"])) {
@@ -387,42 +367,28 @@ function getLimit($limit) {
     }
 }
 
-function checkOut($totalPrice) {
-    global $conn;
-    $ID = $_SESSION["uid"];
-    // Run Payment Verification with paypal
-    // If true
-    // Move items to Order table
-    moveToOrderTable($ID);
-    // Indicate Current Status
-    // else
-    // Rollback
-    // mysqli_rollback($conn);
-    // notify of error
+function changeStatus($status, $TrackingID) {
+    //global $con;
+    $query = "UPDATE ordertable SET `Sta_ID` = $status WHERE `TrackingID` = $TrackingID";
+    mysqli_query($conn, $query);
 }
 
-function moveToOrderTable($ID) {
-    //global $conn;
-    $sql = "SELECT * FROM cat WHERE user_id = '" + $ID + "'";
-    $run_query = mysqli_query($conn, $sql);
-    while ($row = mysqli_fetch_array($run_query)) {
-        $prod_ID = $row["p_id"];
-        $user_ID = $row["user_id"];
-        $total_price = $row["total_amount"];
-        $qty = $row["qty"];
-    }
-    addToOrderTable($prod_ID, $user_ID, $total_price, $qty);
+if (isset($_POST['comment'])) {
+    $comment = $_POST['comment'];
+    $pid = $_POST["pidd"];
+    $id = $_SESSION['uid'];
+    echo $comment;
+    storeReview($comment, $id, $pid);
+    header("Location:productPage.php?id=".$pid);
 }
 
-function addToOrderTable($prod_ID, $user_ID, $total_price, $qty) {
+function storeReview($comment, $userID, $pidd) {
     global $conn;
-    $sql = "INSERT INTO ordertable(Prod_ID,User_ID, Ord_Qty)VALUES($prod_ID,$user_ID,$qty)";
+    $sql = "INSERT INTO feedbacktable(feed_Desc,User_ID, Prod_ID)VALUES('$comment',$userID,'$pidd')";
     if (mysqli_query($conn, $sql)) {
-        echo "successful";
-        //$sql2 = "INSERT INTO ordertable (Sta_ID,Ord_TotalPrice, TrackingID, Items_No) VALUES (1,,,,$total_price)";
-        //$run_query1 = mysqli_query($conn, $sql);
     } else {
-        echo "Failed";
-        mysqli_rollback($conn);
+        echo "false";
     }
 }
+
+?>

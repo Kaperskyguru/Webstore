@@ -5,12 +5,12 @@ require './Admin/include/connect.php';
 //$servername = "localhost";
 //$username = "root";
 //$password = "";
-//$db = "sparepartsdb";
+//$db = "web_store";
 //
-//// Create connection
+// //Create connection
 //$conn = mysqli_connect($servername, $username, $password,$db);
-//// Check connection
+////Check connection
 //if (!$conn) {
 //    die("Connection failed: " . mysqli_connect_error());
 //}
-?>
+//?>

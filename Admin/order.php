@@ -20,12 +20,17 @@ function getStatus() {
     <head>
         <?php include('include/head.php'); ?>
         <?php include('include/head.php'); ?>
+        <script type="text/javascript" src="../jquery/1.12.0/main.js" ></script>
     </head>
 
     <body>
         <div id="wrapper">
-            <nav class="navbar navbar-default navbar-static-top" role = "navigation" style="margin-bottom: 0px">
-                <?php include ('./include/menuHeader.php'); ?>
+            <nav class="navbar navbar-default n
+                 avbar-static-top" role = "navigation" style="margin-bottom: 0px">
+                <?php
+                include ('./include/menuHeader.php');
+                $trackCode
+                ?>
             </nav>
 
             <div id="sidebar-menu-wrapper">
@@ -43,10 +48,12 @@ function getStatus() {
 
                         <div class="row">
                             <div class="col-lg-12">
+                                
                                 <div class="alert alert-success">
                                     <?php echo getStatus() . ' Orders'; ?>
 
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="row">
@@ -76,40 +83,38 @@ function getStatus() {
                                                     while ($data = mysqli_fetch_assoc($data1)) {
                                                         $count + 2;
                                                         echo '  
-                                                        
-                                                    <tr>
-                                                        <td>'
+
+                                                        <tr>
+                                                            <td>'
                                                         ?><?php
                                                         echo $count++;
                                                         echo '</td>
-                                                    
-                                                    
-                                                    <td>'
+
+
+                                                        <td>'
                                                         ?><?php
                                                         $i = $data["Prod_ID"];
                                                         echo getProduct("prod_title", $i);
                                                         echo '</td>
 
-                                                     <td>'
+                                                         <td>'
                                                         ?><?php
                                                         echo $data["Ord_Qty"];
                                                         echo '</td>
-                                                          
-                                                     <td>'
+
+                                                         <td>'
                                                         ?><?php
                                                         $userid = $data["User_ID"];
                                                         echo getUsername($userid);
-                                                        echo '</td>
-                                                        
-                                                         <td>'
-                                                        ?><?php
-                                                        echo $data["DateCreated"];
-                                                        echo '</td>
-                                                         
-                                                        <td>
-                                                        <button type = "button" name = '?><?php echo $data["Ord_ID"]; echo ' class = "btn btn-danger" id = "view">View</button>
-                                                        </td>
-                                                    ';
+                                                        echo '</td><td>'?><?php echo $data["DateCreated"];echo '</td>
+                                                            
+                                                            <td>'?><?php
+                                                            
+                                                            getPaidBtn($data);
+                                                            
+                                                            echo '
+                                                            </td>
+                                                        ';
                                                     }
                                                     ?>  
                                                     </tr>        
@@ -165,5 +170,23 @@ function getStatus() {
             });
 
         </script>
+        
+        <?php
+    
+        
+        function getPaidBtn($data){
+            if(getStatus()==='Pending'){
+                echo '
+                    <button trackID ='?><?php echo $data["TrackingID"]; echo ' type = "button" name = "view" class = "btn btn-danger" id = "view">Paid</button>
+                ';
+            }
+            
+            else if(getStatus()==='On Ship'){
+                echo '
+                    <button trackID ='?><?php echo $data["TrackingID"]; echo ' type = "button" name = "delivered" class = "btn btn-danger" id = "delivered">Delivered</button>
+                ';
+            }
+        }
+        ?>
     </body>
 </html>

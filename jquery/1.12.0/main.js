@@ -62,9 +62,8 @@ $(document).ready(function () {
                 method: "POST",
                 data: { get_selected_brand: 1, bid },
                 success: function (data) {
-                        $("#get_product").html(data);
-                        page("brand," + bid);
-              
+                    $("#get_product").html(data);
+                    page("brand," + bid);
                 }
             })
     })
@@ -109,6 +108,7 @@ $(document).ready(function () {
     $("#checkout").click(function (event){
     event.preventDefault();
     var total_amt = $(total_amt).val();
+    alert("True");
     $.ajax({
          url: "action.php",
          method: "POST",
@@ -327,24 +327,41 @@ $(document).ready(function () {
             }
         })
     }
-    var pidd
+    var pid
+    var uid
     $('#submitReview').click(function (){
         var comment = $("#comment").val();
-        pidd = $("#comment").attr('pid');
+        pid = $(#comment).attr('pid');
+        uid = $(#comment).attr('uid');
+        alert(pid + comment+ uid);
         $.ajax({
             url:"action.php",
             method:"POST",
             data:{
-                commentPost: 1, comment, pidd
+                comment:comment,userID:uid
             },
-            success: function (data) {
-                if(data == true){
-                   // alert("successful")
-                }else{
-                   // alert("false")
-                }
+            success: function (data, textStatus, jqXHR) {
+                alert("Review Success");
+                window.location.href = "ProductPage.php?id="+pid;
             }
         })
+    })
+    
+    
+        var trackID;
+    $("body").delegate("#view", "click", function (event) {
+        event.preventDefault();
+        trackID = $(this).attr('trackID');
+        alert(trackID);
+        $.ajax({
+            url: 'action.php',
+            method: "POST",
+            data: {trackingID:1, trackID},
+            success: function (data) {
+
+            }
+        })
+
     })
         
     

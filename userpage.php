@@ -56,7 +56,7 @@ include('include/head.php');
                 </div>
             </div>
         </div>
-        <div class="col-sm-6" style="">+
+        <div class="col-sm-6" style="">
             <div class="panel panel-primary">
                 <div class="panel-heading">Default Billing Address</div>
                 <div class="panel-body" style="height: 200px;">

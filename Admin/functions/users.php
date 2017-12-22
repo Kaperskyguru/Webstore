@@ -114,3 +114,5 @@ function getFeedback($col, $id) {
                             . "RIGHT JOIN  `products` ON `products`.`prod_id`= `feedbacktable`.`feed_ID` "
                             . "WHERE `feed_ID` = $id")));
 }
+
+

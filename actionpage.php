@@ -1,10 +1,9 @@
 <?php
+
 session_start();
 require('include/sanitizer.php');
 require_once('include/connect.inc.php');
 
-
-$id = $_SESSION['uid'];
 if (isset($_POST['username']) && isset($_POST['password'])) {
     //sanitizepost values from login form
     $username = clean($_POST['username']);
@@ -37,33 +36,29 @@ if (isset($_POST['oldpassword'])) {
     $oldpassword = clean($_POST['oldpassword']);
     $newpassword = clean($_POST['newpassword']);
     $confirmpass = clean($_POST['confirmpsw']);
-    $query = "SELECT * FROM users WHERE user_password= '$oldpassword' AND user_id = '$id'";
+    $query = "SELECT * FROM users WHERE user_password= '$oldpassword'";
     $result = mysqli_query($conn, $query);
     $res = mysqli_num_rows($result);
-    if ($confirmpass === $newpassword) {
-        if ($res > 0) {
-            $update = "UPDATE users SET user_password= '$newpassword' WHERE user_id = '$id'";
-            $new = mysqli_query($conn, $update);
-            if ($new) {
-                echo " <div class='alert alert-warning'>
+    if ($res > 0) {
+        $update = "UPDATE users SET user_password= '$newpassword'";
+        $new = mysqli_query($conn, $update);
+        if ($new) {
+            echo " <div class='alert alert-warning'>
                             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Update Success...</b>
                      </div>
                      ";
-            }
-        } else {
-            echo "
-                     <div class='alert alert-warning'>
-                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Password is incorrect...</b>
-                     </div>
-              ";
         }
     } else {
         echo "
                      <div class='alert alert-warning'>
-                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Password do not match...</b>
+                            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a><b>Password is incorrect...</b>
                      </div>
               ";
     }
+    /* if($oldpassword == '') {
+      $errmsg_arr[] = 'Enter current Password';
+      $errflag = true;
+      } */
 }
 
 if (isset($_POST["loginaction"])) {
@@ -71,3 +66,4 @@ if (isset($_POST["loginaction"])) {
         echo "Please Log in to add products to cart";
     }
 }
+?>

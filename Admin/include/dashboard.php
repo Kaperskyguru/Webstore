@@ -85,16 +85,16 @@ echo '
                             <div class="col-xs-9 text-right">
                                 <div style="font-size: 40px; text-align: right;"> '?>
                                     <?php 
-                                           echo getRowNums('ordertable','Sta_ID',1);
+                                           echo getRowNums('ordertable','Sta_ID',2);
                                     echo '
                                 </div>
                                 <div style="font-size: 1em; text-align: right;">New Orders</div>
                             </div>
                         </div>
                     </div>
-                    <a href="order.php?t=Active">
+                    <a href="order.php?t=Pending">
                         <div class="panel-footer">
-                            <span class="pull-left"> View Active Orders </span>.
+                            <span class="pull-left"> View Pending Orders </span>.
                             <span class="pull-right">
                                 <i class="glyphicon glyphicon-forward"></i>
                             </span>
