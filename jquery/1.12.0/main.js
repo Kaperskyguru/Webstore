@@ -7,11 +7,11 @@ $(document).ready(function () {
         $.ajax({
         url: "action.php",
             method: "POST",
-            data: { category: 1 },
+            data: { category:1 },
             success: function (data) {
                 $("#get_category").html(data);
             }
-        })
+        });
     }
 
     function brand() {
@@ -22,7 +22,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("#get_brand").html(data);
             }
-        })
+        });
     }
 
     function product() {
@@ -34,7 +34,7 @@ $(document).ready(function () {
                 $("#get_product").html(data);
                 page("product,key");
             }
-        })
+        });
     }
 
     
@@ -50,23 +50,23 @@ $(document).ready(function () {
                     $("#get_product").html(data);
                     page("cat," + cid);
                 }
-            })
-    })
+            });
+    });
     
     var bid;
     $("body").delegate(".brand", "click", function (event) {
         event.preventDefault();
             bid = $(this).attr('bid');
             $.ajax({
-            url: "action.php",
+                url: "action.php",
                 method: "POST",
                 data: { get_selected_brand: 1, bid },
                 success: function (data) {
                     $("#get_product").html(data);
                     page("brand," + bid);
                 }
-            })
-    })
+            });
+    });
 
     $("body").delegate("#search_btn", "click", function (event) {
         event.preventDefault();
@@ -80,9 +80,9 @@ $(document).ready(function () {
                 $("#get_product").html(data);
                         page("search," + keyword);
                 }
-            })
+            });
         }
-    })
+    });
 
     $("#submit").click(function (event) {
         event.preventDefault();
@@ -101,8 +101,8 @@ $(document).ready(function () {
                     }
                 }
             }
-        })
-    })
+        });
+    });
     
         
     $("#checkout").click(function (event){
@@ -120,8 +120,8 @@ $(document).ready(function () {
                         alert("False");
              }
          }
-    })
-})
+    });
+});
     
     $("#register").click(function (event) {
         //event.preventDefault();
@@ -143,8 +143,8 @@ $(document).ready(function () {
                     }
                 }
             }
-        })
-    })
+        });
+    });
 
     $("#update").click(function (event) {
         event.preventDefault();
@@ -158,8 +158,8 @@ $(document).ready(function () {
             success: function (data) {
                 $("#error").html(data);
                 }
-        })
-    })
+        });
+    });
 
     cart_count();
     $("body").delegate("#product", "click", function (event) {
@@ -175,8 +175,8 @@ $(document).ready(function () {
                 cart_checkout();
                 login();
             }
-        })
-    })
+        });
+    });
 
     function login() {
     $.ajax({
@@ -190,7 +190,7 @@ $(document).ready(function () {
 
                 }
             }
-        })
+        });
     }
 
     cart_container();
@@ -202,7 +202,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("#cart_product").html(data);
             }
-        })
+        });
     }
     
 
@@ -215,7 +215,7 @@ $(document).ready(function () {
             success: function (data) {
                 $(".badge").html(data);
             }
-        })
+        });
     }
 
     $("#cart_container").click(function (event) {
@@ -227,8 +227,8 @@ $(document).ready(function () {
             success: function (data) {
                 $("#cart_product").html(data);
             }
-        })
-    })
+        });
+    });
 
     cart_checkout();
     function cart_checkout() {
@@ -239,7 +239,7 @@ $(document).ready(function () {
             success: function (data) {
                 $("#cart_checkout").html(data);
             }
-        })
+        });
     }
 
     $("body").delegate(".qty", "keyup", function () {
@@ -248,7 +248,7 @@ $(document).ready(function () {
         var price = $("#price-" + pid).val();
         var total = qty * price;
         $("#total-" + pid).val(total);
-    })
+    });
 
     $("body").delegate(".remove", "click", function (event) {
         event.preventDefault;
@@ -262,7 +262,7 @@ $(document).ready(function () {
                     cart_checkout();
                     cart_count();
                 }
-        })
+        });
     })
 
     $("body").delegate(".update", "click", function (event) {
@@ -279,8 +279,8 @@ $(document).ready(function () {
             $("#cart_msg").html(data);
                     cart_checkout();
             }
-        })
-    })
+        });
+    });
         //var key;
     function page(key) {
         $.ajax({
@@ -290,31 +290,31 @@ $(document).ready(function () {
             success: function (data) {
                 $("#pageno").html(data);
             }
-        })
+        });
     }
 
     $("body").delegate("#searchy", "click", function () {
         var pn = $(this).attr("searchy");
         var keyword = $("#search").val();
         nextClick(keyword, pn);
-    })
+    });
 
     $("body").delegate("#cat", "click", function () {
         var pn = $(this).attr("cat");
         nextClick("cat", pn, cid);
-    })
+    });
 
     $("body").delegate("#brand", "click", function () {
         var pn = $(this).attr("brand");
         //var keyword = $("#search").val();
         nextClick("brand", pn, bid);
-    })
+    });
 
 
     $("body").delegate("#page", "click", function () {
         var pn = $(this).attr("page");
         nextClick("product", pn);
-    })
+    });
 
     function nextClick(key, p, id) {
         pn = p + "," + key + "," + id
@@ -325,14 +325,14 @@ $(document).ready(function () {
             success: function (data) {
             $("#get_product").html(data);
             }
-        })
+        });
     }
-    var pid
-    var uid
+    var pid;
+    var uid;
     $('#submitReview').click(function (){
         var comment = $("#comment").val();
-        pid = $(#comment).attr('pid');
-        uid = $(#comment).attr('uid');
+        pid = $('#comment').attr('pid');
+        uid = $('#comment').attr('uid');
         alert(pid + comment+ uid);
         $.ajax({
             url:"action.php",
@@ -344,8 +344,8 @@ $(document).ready(function () {
                 alert("Review Success");
                 window.location.href = "ProductPage.php?id="+pid;
             }
-        })
-    })
+        });
+    });
     
     
         var trackID;
@@ -360,10 +360,10 @@ $(document).ready(function () {
             success: function (data) {
 
             }
-        })
+        });
 
-    })
+    });
         
     
     
-})
+});

@@ -205,7 +205,11 @@ if (isset($_POST["get_selected_category"]) || isset($_POST["get_selected_brand"]
 									<button pid='$product_id' style='float: right;' id='product' class='btn btn-danger btn-xs'>AddToCart</button>
                                 </div>
                                 <div class='ratings'>
-                                    <p class='pull-right'>15 reviews</p>
+                                    <p class='pull-right'>"
+?> <?php
+
+            echo getRowNums("feedbacktable", "Prod_ID", $product_id);
+            echo " reviews</p>
                                     <p>
                                         <span class='glyphicon glyphicon-star'></span>
                                         <span class='glyphicon glyphicon-star'></span>

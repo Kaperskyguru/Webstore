@@ -5,7 +5,7 @@ require './Admin/include/connect.php';
 //$servername = "localhost";
 //$username = "root";
 //$password = "";
-//$db = "web_store";
+//$db = "sparepartsdb";
 //
 // //Create connection
 //$conn = mysqli_connect($servername, $username, $password,$db);
@@ -13,4 +13,3 @@ require './Admin/include/connect.php';
 //if (!$conn) {
 //    die("Connection failed: " . mysqli_connect_error());
 //}
-//?>
