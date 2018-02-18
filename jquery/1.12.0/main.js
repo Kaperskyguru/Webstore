@@ -333,15 +333,15 @@ $(document).ready(function () {
         var comment = $("#comment").val();
         pid = $('#comment').attr('pid');
         uid = $('#comment').attr('uid');
-        alert(pid + comment+ uid);
+        alert(pid + comment + uid);
         $.ajax({
             url:"action.php",
             method:"POST",
             data:{
-                comment:comment,userID:uid
+                comment:comment,userID:uid,pid:pid
             },
             success: function (data, textStatus, jqXHR) {
-                alert("Review Success");
+                alert(data);
                 window.location.href = "ProductPage.php?id="+pid;
             }
         });

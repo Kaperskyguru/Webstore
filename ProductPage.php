@@ -152,13 +152,13 @@ session_start();
                     <form class = "form">
                         <div class="form-group">
                             <label for="comment">Comment:</label>
-                            <textarea class="form-control" pid = "<?php echo $_GET['id'] ?>" rows="5" id="comment" name="comment"></textarea>
+                            <textarea class="form-control" uid = "<?php echo $_SESSION["uid"]?>" pid = "<?php echo $_GET['id'] ?>" rows="5" id="comment" name="comment"></textarea>
                         </div>
                     </form>
                 </div>
 
                 <div class = "modal-footer">
-                    <button type="button" uid = "<?php echo $_SESSION["uid"]?>" class="btn btn-primary" id="submitReview" name="submitReview">Submit</button>
+                    <button type="button" class="btn btn-primary" id="submitReview" name="submitReview">Submit</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

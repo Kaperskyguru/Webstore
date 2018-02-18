@@ -379,20 +379,18 @@ function changeStatus($status, $TrackingID) {
 
 if (isset($_POST['comment'])) {
     $comment = $_POST['comment'];
-    $pid = $_POST["pidd"];
-    $id = $_SESSION['uid'];
-    echo $comment;
+    $pid = $_POST["pid"];
+    $id = $_POST['userID'];
     storeReview($comment, $id, $pid);
-    header("Location:productPage.php?id=".$pid);
 }
 
-function storeReview($comment, $userID, $pidd) {
+function storeReview($comment, $userID, $pid) {
     global $conn;
-    $sql = "INSERT INTO feedbacktable(feed_Desc,User_ID, Prod_ID)VALUES('$comment',$userID,'$pidd')";
+    $sql = "INSERT INTO feedbacktable(feed_Desc,User_ID, Prod_ID)VALUES('$comment',$userID,'$pid')";
     if (mysqli_query($conn, $sql)) {
+        echo "true";
     } else {
         echo "false";
     }
 }
 
-?>
