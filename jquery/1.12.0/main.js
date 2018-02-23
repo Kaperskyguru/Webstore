@@ -2,12 +2,12 @@ $(document).ready(function () {
     cat();
     brand();
     product();
-        
+
     function cat() {
         $.ajax({
-        url: "action.php",
+            url: "action.php",
             method: "POST",
-            data: { category:1 },
+            data: {category: 1},
             success: function (data) {
                 $("#get_category").html(data);
             }
@@ -16,9 +16,9 @@ $(document).ready(function () {
 
     function brand() {
         $.ajax({
-        url: "action.php",
+            url: "action.php",
             method: "POST",
-            data: { brand: 1 },
+            data: {brand: 1},
             success: function (data) {
                 $("#get_brand").html(data);
             }
@@ -27,9 +27,9 @@ $(document).ready(function () {
 
     function product() {
         $.ajax({
-        url: "action.php",
+            url: "action.php",
             method: "POST",
-            data: { product: 1 },
+            data: {product: 1},
             success: function (data) {
                 $("#get_product").html(data);
                 page("product,key");
@@ -37,35 +37,35 @@ $(document).ready(function () {
         });
     }
 
-    
+
     var cid;
     $("body").delegate(".category", "click", function (event) {
         event.preventDefault();
-            cid = $(this).attr('cid');
-            $.ajax({
+        cid = $(this).attr('cid');
+        $.ajax({
             url: "action.php",
-                method: "POST",
-                data: { get_selected_category: 1, cid },
-                success: function (data) {
-                    $("#get_product").html(data);
-                    page("cat," + cid);
-                }
-            });
+            method: "POST",
+            data: {get_selected_category: 1, cid: cid},
+            success: function (data) {
+                $("#get_product").html(data);
+                page("cat," + cid);
+            }
+        });
     });
-    
+
     var bid;
     $("body").delegate(".brand", "click", function (event) {
         event.preventDefault();
-            bid = $(this).attr('bid');
-            $.ajax({
-                url: "action.php",
-                method: "POST",
-                data: { get_selected_brand: 1, bid },
-                success: function (data) {
-                    $("#get_product").html(data);
-                    page("brand," + bid);
-                }
-            });
+        bid = $(this).attr('bid');
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: {get_selected_brand: 1, bid: bid},
+            success: function (data) {
+                $("#get_product").html(data);
+                page("brand," + bid);
+            }
+        });
     });
 
     $("body").delegate("#search_btn", "click", function (event) {
@@ -73,12 +73,12 @@ $(document).ready(function () {
         var keyword = $("#search").val();
         if (keyword != "") {
             $.ajax({
-            url: "action.php",
+                url: "action.php",
                 method: "POST",
-                data: { search: 1, keyword },
+                data: {search: 1, keyword: keyword},
                 success: function (data) {
-                $("#get_product").html(data);
-                        page("search," + keyword);
+                    $("#get_product").html(data);
+                    page("search," + keyword);
                 }
             });
         }
@@ -91,11 +91,11 @@ $(document).ready(function () {
         $.ajax({
             url: "actionpage.php",
             method: "POST",
-            data: { username, password },
+            data: {username: username, password: password},
             success: function (data) {
                 if (data == "true") {
                     window.location.href = "profile.php";
-                }else {
+                } else {
                     if (data == "Incorrect username/password combination!") {
                         alert(data);
                     }
@@ -103,26 +103,26 @@ $(document).ready(function () {
             }
         });
     });
-    
-        
-    $("#checkout").click(function (event){
-    event.preventDefault();
-    var total_amt = $(total_amt).val();
-    alert("True");
-    $.ajax({
-         url: "action.php",
-         method: "POST",
-         data: {total_amt:total_amt},
-         success: function (data, textStatus, jqXHR) {
-             if(data === "true"){
-                        alert("True");
-             }else{
-                        alert("False");
-             }
-         }
+
+
+    $("#checkout").click(function (event) {
+        event.preventDefault();
+        var total_amt = $(total_amt).val();
+        alert("True");
+        $.ajax({
+            url: "action.php",
+            method: "POST",
+            data: {total_amt: total_amt},
+            success: function (data, textStatus, jqXHR) {
+                if (data === "true") {
+                    alert("True");
+                } else {
+                    alert("False");
+                }
+            }
+        });
     });
-});
-    
+
     $("#register").click(function (event) {
         //event.preventDefault();
         var name = $("#name").val();
@@ -133,11 +133,11 @@ $(document).ready(function () {
         $.ajax({
             url: "register.php",
             method: "POST",
-            data: { name, username,password,email,address },
+            data: {name: name, username: username, password: password, email: email, address: address},
             success: function (data) {
                 if (data == "true") {
                     window.location.href = "profile.php";
-                }else {
+                } else {
                     if (data == "Incorrect username/password combination!") {
                         alert(data);
                     }
@@ -154,10 +154,10 @@ $(document).ready(function () {
         $.ajax({
             url: "actionpage.php",
             method: "POST",
-            data: { oldpassword, newpassword, confirmpsw },
+            data: {oldpassword: oldpassword, newpassword: newpassword, confirmpsw: confirmpsw},
             success: function (data) {
                 $("#error").html(data);
-                }
+            }
         });
     });
 
@@ -168,9 +168,9 @@ $(document).ready(function () {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { addProduct: 1, p_id },
+            data: {addProduct: 1, p_id: p_id},
             success: function (data) {
-            $("#product_msg").html(data);
+                $("#product_msg").html(data);
                 cart_count();
                 cart_checkout();
                 login();
@@ -179,11 +179,11 @@ $(document).ready(function () {
     });
 
     function login() {
-    $.ajax({
-    url: "actionpage.php",
-        method: "POST",
-        data: { loginaction: 1 },
-        success: function (data) {
+        $.ajax({
+            url: "actionpage.php",
+            method: "POST",
+            data: {loginaction: 1},
+            success: function (data) {
                 if (data == "Please Log in to add products to cart") {
                     alert(data);
                 } else if (data == NULL) {
@@ -198,20 +198,20 @@ $(document).ready(function () {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { get_cart_product: 1 },
+            data: {get_cart_product: 1},
             success: function (data) {
                 $("#cart_product").html(data);
             }
         });
     }
-    
+
 
 
     function cart_count() {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { cart_count: 1 },
+            data: {cart_count: 1},
             success: function (data) {
                 $(".badge").html(data);
             }
@@ -223,7 +223,7 @@ $(document).ready(function () {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { get_cart_product: 1 },
+            data: {get_cart_product: 1},
             success: function (data) {
                 $("#cart_product").html(data);
             }
@@ -235,7 +235,7 @@ $(document).ready(function () {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { cart_checkout: 1 },
+            data: {cart_checkout: 1},
             success: function (data) {
                 $("#cart_checkout").html(data);
             }
@@ -256,12 +256,12 @@ $(document).ready(function () {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { removeFromCart: 1, pid },
+            data: {removeFromCart: 1, pid: pid},
             success: function (data) {
                 $("#cart_msg").html(data);
-                    cart_checkout();
-                    cart_count();
-                }
+                cart_checkout();
+                cart_count();
+            }
         });
     })
 
@@ -274,19 +274,19 @@ $(document).ready(function () {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { updateProduct: 1, pid, qty, price, total },
+            data: {updateProduct: 1, pid: pid, qty: qty, price: price, total: total},
             success: function (data) {
-            $("#cart_msg").html(data);
-                    cart_checkout();
+                $("#cart_msg").html(data);
+                cart_checkout();
             }
         });
     });
-        //var key;
+    //var key;
     function page(key) {
         $.ajax({
             url: "action.php",
             method: "POST",
-            data: { page: 1, key },
+            data: {page: 1, key: key},
             success: function (data) {
                 $("#pageno").html(data);
             }
@@ -319,36 +319,36 @@ $(document).ready(function () {
     function nextClick(key, p, id) {
         pn = p + "," + key + "," + id
         $.ajax({
-        url: "action.php",
+            url: "action.php",
             method: "POST",
-            data: { product: 1, setPage: 1, pn },
+            data: {product: 1, setPage: 1, pn: pn},
             success: function (data) {
-            $("#get_product").html(data);
+                $("#get_product").html(data);
             }
         });
     }
     var pid;
     var uid;
-    $('#submitReview').click(function (){
+    $('#submitReview').click(function () {
         var comment = $("#comment").val();
         pid = $('#comment').attr('pid');
         uid = $('#comment').attr('uid');
         alert(pid + comment + uid);
         $.ajax({
-            url:"action.php",
-            method:"POST",
-            data:{
-                comment:comment,userID:uid,pid:pid
+            url: "action.php",
+            method: "POST",
+            data: {
+                comment: comment, userID: uid, pid: pid
             },
             success: function (data, textStatus, jqXHR) {
                 alert(data);
-                window.location.href = "ProductPage.php?id="+pid;
+                window.location.href = "ProductPage.php?id=" + pid;
             }
         });
     });
-    
-    
-        var trackID;
+
+
+    var trackID;
     $("body").delegate("#view", "click", function (event) {
         event.preventDefault();
         trackID = $(this).attr('trackID');
@@ -356,14 +356,14 @@ $(document).ready(function () {
         $.ajax({
             url: 'action.php',
             method: "POST",
-            data: {trackingID:1, trackID},
+            data: {trackingID: 1, trackID: trackID},
             success: function (data) {
 
             }
         });
 
     });
-        
-    
-    
+
+
+
 });
