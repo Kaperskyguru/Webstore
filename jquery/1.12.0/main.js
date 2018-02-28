@@ -86,12 +86,12 @@ $(document).ready(function () {
 
     $("#submit").click(function (event) {
         event.preventDefault();
-        var username = $("#username").val();
+        var email = $("#email").val();
         var password = $("#password").val();
         $.ajax({
             url: "actionpage.php",
             method: "POST",
-            data: {username: username, password: password},
+            data: {email: email, password: password},
             success: function (data) {
                 if (data == "true") {
                     window.location.href = "profile.php";
@@ -128,7 +128,7 @@ $(document).ready(function () {
         var name = $("#name").val();
         var username = $("#username").val();
         var password = $("#pass").val();
-        var email = $("#email").val();
+        var email = $("#emailAddress").val();
         var address = $("#address").val();
         $.ajax({
             url: "register.php",
@@ -138,10 +138,10 @@ $(document).ready(function () {
                 if (data == "true") {
                     window.location.href = "profile.php";
                 } else {
-                    if (data == "Incorrect username/password combination!") {
-                        alert(data);
-                    }
+                    $('#errorPanel').append("Email Alreay Exist");
                 }
+                //alert(data);
+
             }
         });
     });

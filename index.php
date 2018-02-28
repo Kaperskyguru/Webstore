@@ -16,9 +16,7 @@ if(isset($_SESSION["uid"])){
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel = "stylesheet" href="css/main.css"/>
         <link href="css/shop-homepage.css" rel="stylesheet">
-        <script type="text/javascript" src="jquery/1.12.0/jquery2.js"></script>
-        <script type="text/javascript" src="jquery/1.12.0/bootstrap.min.js"></script>
-        <script type="text/javascript" src="jquery/1.12.0/main.js"></script>
+        
 
     </head>
     <body>

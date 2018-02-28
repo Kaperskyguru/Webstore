@@ -4,11 +4,11 @@ session_start();
 require('include/sanitizer.php');
 require_once('include/connect.inc.php');
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
+if (isset($_POST['email']) && isset($_POST['password'])) {
     //sanitizepost values from login form
-    $username = clean($_POST['username']);
+    $email = clean($_POST['email']);
     $password = clean($_POST['password']);
-    $sql = "SELECT * FROM users WHERE user_email= '" . $username . "' AND user_password= '" . $password . "' ";
+    $sql = "SELECT * FROM users WHERE user_email= '" . $email . "' AND user_password= '" . $password . "' ";
     $run_query = mysqli_query($conn, $sql);
     $count = mysqli_num_rows($run_query);
     $row = mysqli_fetch_array($run_query);
